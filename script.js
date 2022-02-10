@@ -18,12 +18,12 @@ function start() {
     if (screen.textContent === "This is the screen" || screen.textContent === "") {
       screen.textContent = "";
     }
-    screen.textContent += e.target.id;
+    screen.textContent += e.target.value;
 
     if (operator === "") {
-      num1 += e.target.id;
+      num1 += e.target.value;
     } else {
-      num2 += e.target.id;
+      num2 += e.target.value;
     }
 
   })

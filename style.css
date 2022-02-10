@@ -1,0 +1,32 @@
+header {
+  text-align: center;
+}
+
+button {
+  width: 100px;
+  height: 100px;
+}
+
+.helper {
+  background-color: white;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+#equals {
+  font-size: 2em;
+}
+
+.operator {
+  background-color: orangered;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+#screen {
+  padding: 20px;
+}
+
+#calculatorContainer {
+  border: 2px solid black;
+}
