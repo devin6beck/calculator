@@ -15,13 +15,17 @@ start();
 
 function start() {
   digitButtons.addEventListener("click", (e) => {
-    screen.textContent = e.target.id;
-    
-    if (num1 === "") {
-      num1 = e.target.id
-    } else {
-      num2 = e.target.id
+    if (screen.textContent === "This is the screen" || screen.textContent === "") {
+      screen.textContent = "";
     }
+    screen.textContent += e.target.id;
+
+    if (operator === "") {
+      num1 += e.target.id;
+    } else {
+      num2 += e.target.id;
+    }
+
   })
 
   operateButtons.addEventListener("click", (e) => {
@@ -34,10 +38,13 @@ function start() {
         break;
       case "divide": operator = "/";
     }
+    screen.textContent = "";
   })
 
   equalsButton.addEventListener("click", (e) => {
     screen.textContent = operate(operator, num1, num2);
+    console.log(`num1: ${num1}`);
+    console.log(`num2: ${num2}`);
   })
 
   clearButton.addEventListener("click", (e) => {
