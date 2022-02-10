@@ -11,50 +11,48 @@ let operator = "";
 let sum = "";
 
 
-start();
 
-function start() {
-  digitButtons.addEventListener("click", (e) => {
-    if (screen.textContent === "This is the screen" || screen.textContent === "") {
-      screen.textContent = "";
-    }
-    screen.textContent += e.target.value;
-
-    if (operator === "") {
-      num1 += e.target.value;
-    } else {
-      num2 += e.target.value;
-    }
-
-  })
-
-  operateButtons.addEventListener("click", (e) => {
-    switch (e.target.id) {
-      case "add": operator = "+";
-        break;
-      case "subtract": operator = "-";
-        break;
-      case "multiply": operator = "*";
-        break;
-      case "divide": operator = "/";
-    }
+digitButtons.addEventListener("click", (e) => {
+  if (screen.textContent === "This is the screen" || screen.textContent === "") {
     screen.textContent = "";
-  })
+  }
+  screen.textContent += e.target.value;
 
-  equalsButton.addEventListener("click", (e) => {
-    screen.textContent = operate(operator, num1, num2);
-    console.log(`num1: ${num1}`);
-    console.log(`num2: ${num2}`);
-  })
+  if (operator === "") {
+    num1 += e.target.value;
+  } else {
+    num2 += e.target.value;
+  }
 
-  clearButton.addEventListener("click", (e) => {
-    screen.textContent = ""
-    num1 = "";
-    num2 = "";
-    operator = "";
-    sum = "";
-  })
-}
+})
+
+operateButtons.addEventListener("click", (e) => {
+  switch (e.target.id) {
+    case "add": operator = "+";
+      break;
+    case "subtract": operator = "-";
+      break;
+    case "multiply": operator = "*";
+      break;
+    case "divide": operator = "/";
+  }
+  screen.textContent = "";
+})
+
+equalsButton.addEventListener("click", (e) => {
+  screen.textContent = operate(operator, num1, num2);
+  console.log(`num1: ${num1}`);
+  console.log(`num2: ${num2}`);
+})
+
+clearButton.addEventListener("click", (e) => {
+  screen.textContent = ""
+  num1 = "";
+  num2 = "";
+  operator = "";
+  sum = "";
+})
+
 
 
 
