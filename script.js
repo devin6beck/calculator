@@ -3,6 +3,7 @@ const digitButtons = document.querySelectorAll(".digit")
 const operatorButtons = document.querySelectorAll(".operator");
 const clearButton = document.getElementById("clear");
 const equalsButton = document.getElementById("equals");
+const decimal = document.getElementById("decimal");
 
 let num1;
 let num2;
@@ -12,6 +13,7 @@ let operator = undefined;
 
 clearButton.addEventListener("click", clear);
 equalsButton.addEventListener("click", equals);
+decimal.addEventListener("click", appendDecimal);
 
 digitButtons.forEach((button) => 
   button.addEventListener("click", () => appendNumber(button.value))
@@ -84,6 +86,14 @@ function clear() {
   screen.textContent = "This is the screen";
 }
 
+function appendDecimal() {
+  if (!helper) {
+    screen.textContent = "";
+    helper = true;
+  }
+  screen.textContent += ".";
+}
+
 function setOperator(buttonId) {
   switch (buttonId) {
     case "add": operator = "+";
@@ -98,10 +108,10 @@ function setOperator(buttonId) {
 
 function operate(operator, n1, n2) {
   switch(operator) {
-    case "+" : return add(parseInt(n1), parseInt(n2));
-    case "-" : return subtract(parseInt(n1), parseInt(n2));
-    case "/" : return divide(parseInt(n1), parseInt(n2));
-    case "*" : return multiply(parseInt(n1), parseInt(n2));
+    case "+" : return add(Number(n1), Number(n2));
+    case "-" : return subtract(Number(n1), Number(n2));
+    case "/" : return divide(Number(n1), Number(n2));
+    case "*" : return multiply(Number(n1), Number(n2));
   }
 }
 

@@ -30,3 +30,13 @@ button {
 #calculatorContainer {
   border: 2px solid black;
 }
+
+#decimal,
+.digit {
+  font-weight: bold;
+  font-size: larger;
+}
+
+#decimal {
+  font-size: xx-large;
+}
