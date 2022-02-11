@@ -1,33 +1,91 @@
 const screen = document.getElementById("screen");
-const buttons = document.getElementById("buttons");
-const digitButtons = document.getElementById("digitButtons");
-const operateButtons = document.getElementById("operateButtons");
+const digitButtons = document.querySelectorAll(".digit")
+const operatorButtons = document.querySelectorAll(".operator");
 const clearButton = document.getElementById("clear");
 const equalsButton = document.getElementById("equals");
 
-let num1 = "";
-let num2 = "";
-let operator = "";
-let sum = "";
+let num1;
+let num2;
+let sum;
+let helper = false;
+let operator = undefined;
 
+clearButton.addEventListener("click", clear);
+equalsButton.addEventListener("click", equals);
 
+digitButtons.forEach((button) => 
+  button.addEventListener("click", () => appendNumber(button.value))
+)
 
-digitButtons.addEventListener("click", (e) => {
-  if (screen.textContent === "This is the screen" || screen.textContent === "") {
+operatorButtons.forEach((button) => 
+  button.addEventListener("click", () => evaluate(button.id))
+)
+
+// this runs when a digit Button is hit
+function appendNumber(num) {
+  console.log(`appendNumber start`)
+  console.log(`you clicked ${num}`);
+
+  if (!helper) {
     screen.textContent = "";
+    helper = true;
   }
-  screen.textContent += e.target.value;
 
-  if (operator === "") {
-    num1 += e.target.value;
+  screen.textContent += num;
+
+ 
+  console.log(`num1: ${num1}`);
+  console.log(`num2: ${num2}`);
+  console.log(`sum: ${sum}`);
+  console.log(`appendNumber end`)
+}
+
+// this runs when an operator Button is hit
+function evaluate(buttonId) {
+  console.log(`evaluate start`)
+  if (!num1) {
+    num1 = screen.textContent;
+    setOperator(buttonId);
+  } else if (!num2 && helper) {
+    num2 = screen.textContent;
+    sum = operate(operator, num1, num2);
+    screen.textContent = sum;
+    setOperator(buttonId);
+    num1 = sum;
+    num2 = undefined;
   } else {
-    num2 += e.target.value;
+    setOperator(buttonId);
   }
 
-})
+  helper = false;
+  
+  console.log(`num1: ${num1}`);
+  console.log(`num2: ${num2}`);
+  console.log(`sum: ${sum}`);
+  console.log(`evaluate end`);
+  
+}
 
-operateButtons.addEventListener("click", (e) => {
-  switch (e.target.id) {
+function equals() {
+  num2 = screen.textContent;
+  sum = operate(operator, num1, num2);
+  screen.textContent = sum;
+  num1 = sum;
+  num2 = undefined;
+  helper = false;
+}
+
+function clear() {
+  num1 = undefined;
+  num2 = undefined;
+  sum = undefined;
+  helper = false;
+  operator = undefined;
+  screen.textContent = "This is the screen";
+}
+
+function setOperator(buttonId) {
+  switch (buttonId) {
     case "add": operator = "+";
       break;
     case "subtract": operator = "-";
@@ -36,50 +94,16 @@ operateButtons.addEventListener("click", (e) => {
       break;
     case "divide": operator = "/";
   }
-  screen.textContent = "";
-})
+}
 
-equalsButton.addEventListener("click", (e) => {
-  screen.textContent = operate(operator, num1, num2);
-  console.log(`num1: ${num1}`);
-  console.log(`num2: ${num2}`);
-})
-
-clearButton.addEventListener("click", (e) => {
-  screen.textContent = ""
-  num1 = "";
-  num2 = "";
-  operator = "";
-  sum = "";
-})
-
-
-
-
-// function start() {
-//   let num1 = "";
-//   let num2 = "";
-//   let sum = "";
-
-//   digitButtons.addEventListener("click", (e) => {
-//     console.log(`e.target.id: ${e.target.id}`)
-//     console.log(`e.target.nodeName: ${e.target.nodeName}`)
-//     screen.textContent = e.target.id;
-    
-//     if (num1 === "") {
-//       num1 = e.target.id
-//     } else {
-//       num2 = e.target.id
-//       screen.textContent = add(parseInt(num1), parseInt(num2));
-//       num1 = num2;
-//     }
-//     console.log(`num1: ${parseInt(num1)}`)
-//     console.log(`num2: ${num2}`)
-
-//   })
-
-
-// }
+function operate(operator, n1, n2) {
+  switch(operator) {
+    case "+" : return add(parseInt(n1), parseInt(n2));
+    case "-" : return subtract(parseInt(n1), parseInt(n2));
+    case "/" : return divide(parseInt(n1), parseInt(n2));
+    case "*" : return multiply(parseInt(n1), parseInt(n2));
+  }
+}
 
 function add(n1, n2) {
   return n1 + n2;
@@ -100,16 +124,6 @@ function divide(n1, n2) {
   return n1 / n2;
 }
 
-function operate(operator, n1, n2) {
-  switch(operator) {
-    case "+" : return add(parseInt(n1), parseInt(n2));
-    case "-" : return subtract(parseInt(n1), parseInt(n2));
-    case "/" : return divide(parseInt(n1), parseInt(n2));
-    case "*" : return multiply(parseInt(n1), parseInt(n2));
-  }
+function isNumeric(num) {
+  return !isNaN(parseFloat(num)) && isFinite(num);
 }
-
-// console.log(operate("/", 2, 4))
-
-// const screen = document.getElementById("screen");
-// screen.textContent = "Hi"
