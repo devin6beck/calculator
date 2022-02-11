@@ -108,10 +108,10 @@ function setOperator(buttonId) {
 
 function operate(operator, n1, n2) {
   switch(operator) {
-    case "+" : return add(Number(n1), Number(n2));
-    case "-" : return subtract(Number(n1), Number(n2));
-    case "/" : return divide(Number(n1), Number(n2));
-    case "*" : return multiply(Number(n1), Number(n2));
+    case "+" : return roundToSix(add(Number(n1), Number(n2)));
+    case "-" : return roundToSix(subtract(Number(n1), Number(n2)));
+    case "/" : return roundToSix(divide(Number(n1), Number(n2)));
+    case "*" : return roundToSix(multiply(Number(n1), Number(n2)));
   }
 }
 
@@ -136,4 +136,9 @@ function divide(n1, n2) {
 
 function isNumeric(num) {
   return !isNaN(parseFloat(num)) && isFinite(num);
+}
+
+// this function rounds the numer to the 6th decimal point. 
+function roundToSix(num) {
+  return +(Math.round(num + "e+6")  + "e-6");
 }
