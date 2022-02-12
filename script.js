@@ -4,6 +4,7 @@ const operatorButtons = document.querySelectorAll(".operator");
 const clearButton = document.getElementById("clear");
 const equalsButton = document.getElementById("equals");
 const decimal = document.getElementById("decimal");
+const backspace = document.getElementById("backspace");
 
 let num1;
 let num2;
@@ -14,6 +15,8 @@ let operator = undefined;
 clearButton.addEventListener("click", clear);
 equalsButton.addEventListener("click", equals);
 decimal.addEventListener("click", appendDecimal);
+backspace.addEventListener("click", removeLastDigitOnScreen);
+
 
 digitButtons.forEach((button) => 
   button.addEventListener("click", () => appendNumber(button.textContent))
@@ -143,4 +146,8 @@ function isNumeric(num) {
 // this function rounds the numer to the 6th decimal point. 
 function roundToSix(num) {
   return +(Math.round(num + "e+6")  + "e-6");
+}
+
+function removeLastDigitOnScreen() {
+  screen.textContent = screen.textContent.slice(0, -1);
 }
