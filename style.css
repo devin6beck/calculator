@@ -2,6 +2,13 @@ header {
   text-align: center;
 }
 
+#calculatorContainer {
+  border: 2px solid black;
+  max-width: 400px ;
+  max-height: 500px;
+
+}
+
 button {
   width: 100px;
   height: 100px;
@@ -27,9 +34,7 @@ button {
   padding: 20px;
 }
 
-#calculatorContainer {
-  border: 2px solid black;
-}
+
 
 #decimal,
 .digit {
