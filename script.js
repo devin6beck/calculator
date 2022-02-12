@@ -84,6 +84,7 @@ function clear() {
   helper = false;
   operator = undefined;
   screen.textContent = "This is the screen";
+  decimal.disabled = false;
 }
 
 function appendDecimal() {
@@ -92,6 +93,7 @@ function appendDecimal() {
     helper = true;
   }
   screen.textContent += ".";
+  decimal.disabled = true;
 }
 
 function setOperator(buttonId) {
