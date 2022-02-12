@@ -33,6 +33,7 @@
 
 #clear {
   background-color: rgb(180, 245, 180);
+  grid-column: span 3;
 }
 
 button {
