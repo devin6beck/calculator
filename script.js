@@ -16,7 +16,7 @@ equalsButton.addEventListener("click", equals);
 decimal.addEventListener("click", appendDecimal);
 
 digitButtons.forEach((button) => 
-  button.addEventListener("click", () => appendNumber(button.value))
+  button.addEventListener("click", () => appendNumber(button.textContent))
 )
 
 operatorButtons.forEach((button) => 
