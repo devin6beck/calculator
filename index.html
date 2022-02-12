@@ -8,34 +8,45 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header><h1>Simple Calculator</h1></header>
-  <div id="calculatorContainer">
-    <div id="screen">This is the screen</div>
-    <div id="buttons">
-      <button class="helper" id="clear">Clear</button>
-      <button class="helper" id="equals">=</button>
-      <div id="operateButtons">
-        <button class="operator" id="add">+</button>
-        <button class="operator" id="subtract">-</button>
-        <button class="operator" id="divide">&#247</button>
-        <button class="operator" id="multiply">&times</button>
-      </div>
-      <div id="digitButtons">
-        <button id="number-1" class="digit" value="1">1</button>
-        <button id="number-2" class="digit" value="2">2</button>
-        <button id="number-3" class="digit" value="3">3</button>
-        <button id="number-4" class="digit" value="4">4</button>
-        <button id="number-5" class="digit" value="5">5</button>
-        <button id="number-6" class="digit" value="6">6</button>
-        <button id="number-7" class="digit" value="7">7</button>
-        <button id="number-8" class="digit" value="8">8</button>
-        <button id="number-9" class="digit" value="9">9</button>
-        <button id="number-0" class="digit" value="0">0</button>
-      </div>
-      <button id="decimal">.</button>
-    </div>
-  </div>
 
-  <script src="script.js"></script>
+  <div id="mainContainer">
+
+    <header><h1>Simple Calculator</h1></header>
+
+    <div id="calculator">
+
+      <div id="screen">This is the screen</div>
+
+      <div id="buttons">
+
+        <button id="clear">Clear</button>
+        <button class="operator" id="divide">&#247</button>
+
+        <button class="digit">7</button>
+        <button class="digit">8</button>
+        <button class="digit">9</button>
+        <button class="operator" id="multiply">&times</button>
+
+        <button class="digit">4</button>
+        <button class="digit">5</button>
+        <button class="digit">6</button>
+        <button class="operator" id="subtract">-</button>
+
+        <button class="digit">1</button>
+        <button class="digit">2</button>
+        <button class="digit">3</button>
+        <button class="operator" id="add">+</button>
+
+        <button id="backspace">&#8592;</button>
+        <button class="digit">0</button>
+        <button id="decimal">.</button>
+        <button id="equals">=</button>
+        
+
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </div>
 </body>
 </html>
