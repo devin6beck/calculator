@@ -9,13 +9,20 @@ const backspace = document.getElementById("backspace");
 let num1;
 let num2;
 let sum;
+// let helper is true after a digit is clicked the first time upon loading ||
+// the first time a digit is clicked after clicking clear, an operator, or equals. 
+// clear, operator, and equals turn let helper false.
 let helper = false;
 let operator = undefined;
 
-clearButton.addEventListener("click", clear);
+
 equalsButton.addEventListener("click", equals);
 decimal.addEventListener("click", appendDecimal);
 backspace.addEventListener("click", removeLastDigitOnScreen);
+
+clearButton.addEventListener("click", () => {
+  clear("0");
+});
 
 
 digitButtons.forEach((button) => 
@@ -30,7 +37,14 @@ operatorButtons.forEach((button) =>
 function appendNumber(num) {
 
   if (!helper) {
+    console.log(`!isNaN(screen.textContent) = ${!isNaN(screen.textContent)}`)
+
+    // if 
+    if(screen.textContent.includes("divide")) {
+      num1 = undefined;
+    }
     screen.textContent = "";
+    
     helper = true;
   }
 
@@ -71,13 +85,13 @@ function equals() {
   helper = false;
 }
 
-function clear() {
+function clear(text) {
   num1 = undefined;
   num2 = undefined;
   sum = undefined;
   helper = false;
   operator = undefined;
-  screen.textContent = "0";
+  screen.textContent = text;
   decimal.disabled = false;
 }
 
@@ -108,7 +122,7 @@ function operate(operator, n1, n2) {
   switch(operator) {
     case "+" : return roundToSix(add(Number(n1), Number(n2)));
     case "-" : return roundToSix(subtract(Number(n1), Number(n2)));
-    case "/" : return roundToSix(divide(Number(n1), Number(n2)));
+    case "/" : return divide(Number(n1), Number(n2));
     case "*" : return roundToSix(multiply(Number(n1), Number(n2)));
   }
 }
@@ -128,10 +142,12 @@ function multiply(n1, n2) {
 function divide(n1, n2) {
 
   if (n2 === 0) {
+    helper = false;
+    num1 = 0;
     return "Cannot divide by 0..."
   }
 
-  return n1 / n2;
+  return roundToSix(n1 / n2);
 }
 
 function isNumeric(num) {
