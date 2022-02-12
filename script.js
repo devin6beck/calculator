@@ -28,8 +28,6 @@ operatorButtons.forEach((button) =>
 
 // this runs when a digit Button is hit
 function appendNumber(num) {
-  console.log(`appendNumber start`)
-  console.log(`you clicked ${num}`);
 
   if (!helper) {
     screen.textContent = "";
@@ -37,38 +35,31 @@ function appendNumber(num) {
   }
 
   screen.textContent += num;
-
- 
-  console.log(`num1: ${num1}`);
-  console.log(`num2: ${num2}`);
-  console.log(`sum: ${sum}`);
-  console.log(`appendNumber end`)
 }
 
 // this runs when an operator Button is hit
 function evaluate(buttonId) {
-  console.log(`evaluate start`)
+
   if (!num1) {
     num1 = screen.textContent;
     setOperator(buttonId);
+
   } else if (!num2 && helper) {
+
     num2 = screen.textContent;
     sum = operate(operator, num1, num2);
     screen.textContent = sum;
     setOperator(buttonId);
     num1 = sum;
     num2 = undefined;
+
   } else {
     setOperator(buttonId);
+
   }
 
   helper = false;
-  
-  console.log(`num1: ${num1}`);
-  console.log(`num2: ${num2}`);
-  console.log(`sum: ${sum}`);
-  console.log(`evaluate end`);
-  
+
 }
 
 function equals() {
@@ -91,10 +82,12 @@ function clear() {
 }
 
 function appendDecimal() {
+
   if (!helper) {
     screen.textContent = "";
     helper = true;
   }
+
   screen.textContent += ".";
   decimal.disabled = true;
 }
@@ -133,9 +126,11 @@ function multiply(n1, n2) {
 }
 
 function divide(n1, n2) {
+
   if (n2 === 0) {
     return "Cannot divide by 0..."
   }
+
   return n1 / n2;
 }
 
