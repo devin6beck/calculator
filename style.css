@@ -2,16 +2,25 @@ header {
   text-align: center;
 }
 
+body {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
 #calculatorContainer {
   border: 2px solid black;
-  max-width: 400px ;
-  max-height: 500px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
 
 }
 
 button {
-  width: 100px;
-  height: 100px;
+
 }
 
 .helper {
