@@ -83,7 +83,7 @@ function clear() {
   sum = undefined;
   helper = false;
   operator = undefined;
-  screen.textContent = "This is the screen";
+  screen.textContent = "0";
   decimal.disabled = false;
 }
 
